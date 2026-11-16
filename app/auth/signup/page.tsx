@@ -1,6 +1,6 @@
 "use client';
-import { useState } from 'react';
-import { signUp, useSession } from '@/lib/auth-client';
+import { useState, FormEvent, ChangeEvent } from 'react';
+import { signUp } from '@/lib/auth-client';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 export default function SignupPage() {
@@ -19,7 +19,7 @@ export default function SignupPage() {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get('callbackUrl') || '/dashboard';
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -27,7 +27,7 @@ export default function SignupPage() {
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError('');

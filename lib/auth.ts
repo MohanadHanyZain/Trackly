@@ -18,4 +18,16 @@ export const auth = betterAuth({
     enabled: true,
   },
   plugins: [nextCookies()],
+  basePath: '/api/auth',
+  trustedOrigins: ['http://localhost:3000'],
+  session: {
+    strategy: 'jwt',
+    maxAge: 24 * 60 * 60, // 24 hours
+    updateAge: 60 * 60, // 1 hour
+    cookieName: 'auth_session',
+  },
+  cors: {
+    origin: ['http://localhost:3000'],
+    credentials: true,
+  },
 });

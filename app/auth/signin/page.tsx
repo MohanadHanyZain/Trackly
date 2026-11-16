@@ -1,6 +1,6 @@
 "use client';
-import { useState } from 'react';
-import { signIn, signUp, useSession } from '@/lib/auth-client';
+import { useState, FormEvent } from 'react';
+import { signIn } from '@/lib/auth-client';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 export default function LoginForm() {
@@ -13,7 +13,7 @@ export default function LoginForm() {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get('callbackUrl') || '/dashboard';
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError('');
